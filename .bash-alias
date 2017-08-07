@@ -1,0 +1,6 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alert() { $@ && say -v zarvox "Task complete!" || say -v zarvox "Task failed!"; }
+

@@ -1,0 +1,50 @@
+[[ -f ~/dotfiles/.git-prompt ]] && . ~/dotfiles/.git-prompt
+
+# additional git settings
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCOLORHINTS=true
+
+# colors
+RED="\[\e[0;31m\]"
+YELLOW="\[\e[0;33m\]"
+GREEN="\[\e[0;32m\]"
+BLUE="\[\e[0;34m\]"
+CYAN="\[\e[0;36m\]"
+LIGHT_RED="\[\e[1;31m\]"
+LIGHT_GREEN="\[\e[1;32m\]"
+WHITE="\[\e[1;37m\]"
+LIGHT_GRAY="\[\e[0;37m\]"
+RESET="\[\e[0m\]"
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+PS_WHERE="\u@\h ${LIGHT_GREEN}\W${RESET}"
+PS_REPO='$(__git_ps1 " (%s)")'
+
+function parse_pyenv {
+  GLOBAL_NAME=$(pyenv global)
+  COLOR="${CYAN}"
+  [ "$VENV_NAME" == "${GLOBAL_NAME}" ] && COLOR="$RED"
+
+  PS_VENV=$(pyenv version-name)
+  PS_VENV="${COLOR}(${PS_VENV})${RESET}"
+}
+
+function prompt_func() {
+  parse_pyenv
+
+  git rev-parse --git-dir > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    prompt="\n[${PS_VENV}${YELLOW}${PS_REPO}${RESET}]\n[${PS_WHERE}]\$ "
+    PS1="${prompt}$ "
+  else
+    PS1=$PSAVE
+  fi
+}
+
+export PSAVE=$PS1
+
+PROMPT_COMMAND=prompt_func
