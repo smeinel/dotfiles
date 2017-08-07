@@ -22,7 +22,7 @@ RESET="\[\e[0m\]"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 PS_WHERE="\u@\h ${LIGHT_GREEN}\W${RESET}"
-PS_REPO='$(__git_ps1 " (%s)")'
+PS_REPO='$(__git_ps1 "git: %s")'
 
 function parse_pyenv {
   GLOBAL_NAME=$(pyenv global)
@@ -30,7 +30,7 @@ function parse_pyenv {
   [ "$VENV_NAME" == "${GLOBAL_NAME}" ] && COLOR="$RED"
 
   PS_VENV=$(pyenv version-name)
-  PS_VENV="${COLOR}(${PS_VENV})${RESET}"
+  PS_VENV="${COLOR}pyenv: ${PS_VENV}${RESET}"
 }
 
 function prompt_func() {
@@ -38,7 +38,7 @@ function prompt_func() {
 
   git rev-parse --git-dir > /dev/null 2>&1
   if [ $? -eq 0 ]; then
-    prompt="\n[${PS_VENV}${YELLOW}${PS_REPO}${RESET}]\n[${PS_WHERE}]\$ "
+    prompt="\n[${PS_VENV} ${YELLOW}${PS_REPO}${RESET}]\n[${PS_WHERE}]"
     PS1="${prompt}$ "
   else
     PS1=$PSAVE
