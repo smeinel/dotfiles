@@ -38,10 +38,12 @@ function prompt_func() {
 
   git rev-parse --git-dir > /dev/null 2>&1
   if [ $? -eq 0 ]; then
-    prompt="\n[${PS_VENV} ${YELLOW}${PS_REPO}${RESET}]\n[${PS_WHERE}]"
+    prompt="\n[${PS_VENV} ${YELLOW}${PS_REPO}${RESET}]\n\[$(iterm2_prompt_mark)\][${PS_WHERE}]"
     PS1="${prompt}$ "
   else
-    PS1=$PSAVE
+    prompt="\n[${PS_VENV}]\n\[$(iterm2_prompt_mark)\][${PS_WHERE}]"
+    PS1="${prompt}$ "
+    # PS1=$PSAVE
   fi
 }
 

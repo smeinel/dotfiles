@@ -1,1 +1,2 @@
 [[ -f ~/dotfiles/.git-completion ]] && . ~/dotfiles/.git-completion
+complete -C '/Users/smeinel/.pyenv/shims/aws_completer' aws

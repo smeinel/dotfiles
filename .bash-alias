@@ -1,6 +1,9 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias indent='VERSION_CONTROL=none gindent -kr -nut -ts4 -nlp -ip0 -l120'
+alias path='echo $PATH | tr : "\n"'
+alias treefind='tree -C --prune -P'
 
 alert() { $@ && say -v zarvox "Task complete!" || say -v zarvox "Task failed!"; }
 

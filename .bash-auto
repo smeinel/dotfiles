@@ -5,3 +5,7 @@ then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+# set up chtf (CHange TerraForm)
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source "/usr/local/share/chtf/chtf.sh"
+fi
