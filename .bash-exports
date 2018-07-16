@@ -1,0 +1,3 @@
+export PYTHONDONTWRITEBYTECODE=1
+export HPC_SRC_HOME=/central/groups/bhatta/smeinel
+
