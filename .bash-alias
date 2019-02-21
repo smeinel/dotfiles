@@ -1,10 +1,11 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias indent='VERSION_CONTROL=none gindent -kr -nut -ts4 -nlp -ip0 -l120'
 alias path='echo $PATH | tr : "\n"'
-alias rshpc='rsync -ruP --exclude .git . login.hpc.caltech.edu:${HPC_SRC_HOME:-~}/$(basename $(pwd))/'
 alias treefind='tree -C --prune -P'
+
+# git aliases
+alias gpt='git push && git push --tags'
 
 alert() { $@ && say -v zarvox "Task complete!" || say -v zarvox "Task failed!"; }
 
